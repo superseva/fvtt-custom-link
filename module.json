@@ -1,0 +1,16 @@
+{
+    "id":"fvtt-custom-link",
+    "title":"Custom Links for Foundry VTT",
+    "description": "Making span with specific class be clickable",
+	"version": "10.0.0",
+	"compatibility": {
+		"minimum": "10",
+		"verified": "10",
+		"maximum": "10"
+	},
+	"authors":[{"name":"HappySteve"}],
+	"scripts": ["custom-link.js"],
+	"styles": ["custom-link.css"],
+	"protected": false,
+	"url": ""
+}

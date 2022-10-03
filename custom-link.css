@@ -1,0 +1,8 @@
+.syrin-link{
+    /* color:orange */
+    text-decoration: underline;
+}
+.syrin-link .s-play, .syrin-link .s-stop{
+    color:red;
+    cursor: pointer;
+}
