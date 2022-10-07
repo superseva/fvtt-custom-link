@@ -6,3 +6,8 @@
     color:red;
     cursor: pointer;
 }
+
+.syrin-link .m-play, .syrin-link .m-stop{
+    color:rgb(68, 0, 255);
+    cursor: pointer;
+}

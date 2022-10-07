@@ -4,24 +4,42 @@ Hooks.on("init", ()=>{
 
 Hooks.on("renderJournalPageSheet", (app, html, page  )=>{
     const key = game.settings.get('fvtt-custom-link', 'syrin-api-key');;
-    const $play =  html.find('.s-play')
-    const $stop =  html.find('.s-stop')
-    $play.on('click', function( event ){
+    const $playElement =  html.find('.s-play')
+    const $stopElement =  html.find('.s-stop')
+    $playElement.on('click', function( event ){
         event.stopImmediatePropagation();
         const _id = $(this).parents('.syrin-link').data("sound");        
         const _action = "play";
-        fetchSyrinSound(_id, _action , key)}
+        controlSyrinElement(_id, _action , key)}
     )
-    $stop.on('click', function( event ){
+    $stopElement.on('click', function( event ){
         event.stopImmediatePropagation();
         const _id = $(this).parents('.syrin-link').data("sound");
         const _action = "stop";
-        fetchSyrinSound(_id, _action , key)}
+        controlSyrinElement(_id, _action , key)}
+    )
+
+    const $playMood =  html.find('.m-play')
+    const $stopMood =  html.find('.m-stop')
+    $playMood.on('click', function( event ){
+        event.stopImmediatePropagation();
+        const _id = $(this).parents('.syrin-link').data("sound");        
+        const _action = "play";
+        controlSyrinMood(_id, _action , key)}
+    )
+    $stopMood.on('click', function( event ){
+        event.stopImmediatePropagation();
+        const _id = $(this).parents('.syrin-link').data("sound");
+        const _action = "stop";
+        controlSyrinMood(_id, _action , key)}
     )
 })
 
-const fetchSyrinSound = async(id, action, key) => {
+const controlSyrinElement = async(id, action, key) => {
     await fetch(`https://syrinscape.com/online/frontend-api/elements/${id}/${action}/?auth_token=${key}`);
+}
+const controlSyrinMood = async(id, action, key) => {
+    await fetch(`https://syrinscape.com/online/frontend-api/moods/${id}/${action}/?auth_token=${key}`);
 }
 
 const registerSettings = ()=> {
