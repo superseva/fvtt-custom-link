@@ -1,6 +1,27 @@
 Hooks.on("init", ()=>{
-    registerSettings()
+    registerSettings();
+    CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
+        {
+          pattern : /@syrmod\[(.+?)\]/gm,
+          enricher : async (match, options) => {
+            const span = document.createElement("span");
+            span.innerHTML = `Mod: <em class="syrin-link" data-sound="${match[1]}">${match[1]} <span class="m-play">⏭</span> <span class="m-stop">⏹</span></em>`
+            return span;
+          }
+        },
+        {
+            pattern : /@syrel\[(.+?)\]/gm,
+            enricher : async (match, options) => {
+              const span = document.createElement("span");
+              span.innerHTML = `Mod: <em class="syrin-link" data-sound="${match[1]}">${match[1]} <span class="s-play">⏭</span> <span class="s-stop">⏹</span></em>`
+              return span;
+            }
+          }
+      ])
 })
+
+
+
 
 Hooks.on("renderJournalPageSheet", (app, html, page  )=>{
     const key = game.settings.get('fvtt-custom-link', 'syrin-api-key');;
